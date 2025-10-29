@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AlbumData } from '../../data/album-data';
+import { ResourceData } from '../../data/resource-data';
 
 @Component({
   selector: 'app-carousel-card',
@@ -8,5 +8,6 @@ import { AlbumData } from '../../data/album-data';
   standalone: false
 })
 export class CarouselCardComponent {
-  @Input() album: AlbumData;   // ✅ declare album
+  @Input() resource: ResourceData;   // ✅ generic input
 }
+
