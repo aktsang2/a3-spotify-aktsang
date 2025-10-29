@@ -13,9 +13,12 @@ export class AboutComponent implements OnInit {
 
   constructor(private spotify: SpotifyService) {}
 
-  ngOnInit() {}
-  
+  ngOnInit() {
+    this.loadUserInfo();
+  }
+
   loadUserInfo() {
+    // ✅ use aboutMe() which returns a Promise
     this.spotify.aboutMe().then((me: ProfileData) => {
       this.user = me;
     });
