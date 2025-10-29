@@ -24,7 +24,16 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    //TODO: call search function in spotifyService and parse response
-  }
-
+    if (!this.searchString) return;
+      
+      this.spotifyService.search(this.searchCategory, this.searchString).subscribe((data: any) => {
+      if (this.searchCategory === 'artist') {
+        this.resources = data.artists.items.map((item: any) => new ArtistData(item));
+      } else if (this.searchCategory === 'album') {
+        this.resources = data.albums.items.map((item: any) => new AlbumData(item));
+      } else if (this.searchCategory === 'track') {
+        this.resources = data.tracks.items.map((item: any) => new TrackData(item));
+     }
+  });
+ }
 }
