@@ -23,17 +23,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  search() {
-    if (!this.searchString) return;
-      
-      this.spotifyService.search(this.searchCategory, this.searchString).subscribe((data: any) => {
-      if (this.searchCategory === 'artist') {
-        this.resources = data.artists.items.map((item: any) => new ArtistData(item));
-      } else if (this.searchCategory === 'album') {
-        this.resources = data.albums.items.map((item: any) => new AlbumData(item));
-      } else if (this.searchCategory === 'track') {
-        this.resources = data.tracks.items.map((item: any) => new TrackData(item));
-     }
-  });
+results: ResourceData[] = [];
+
+doSearch() {
+  this.spotifyService.searchFor(this.searchCategory, this.searchString).then((data) => {
+    this.results = data;
+    });
+   }
  }
 }
