@@ -14,7 +14,7 @@
 
       <!-- ✅ Loop over track's artists -->
       <div>
-        @for (artist of track.artists) {
+        @for (artist of track.artists; track artist.id) {
           <p>
             Artist:
             <a [routerLink]="['/artist', artist.id]">
