@@ -9,23 +9,15 @@ import { Popularity } from 'src/app/data/popularity';
 })
 export class ThermometerComponent implements OnInit {
   // ✅ Accept a Popularity object or just the numeric value
-  @Input() popularity: Popularity | number;
+  @Input() popularity: number;
 
   constructor() {}
 
   ngOnInit() {}
 
-  // Helper to normalize to a number
-  get value(): number {
-    return typeof this.popularity === 'number'
-      ? this.popularity
-      : this.popularity?.value ?? 0;
-  }
-
-  // Helper to choose a color based on the value
-  get color(): string {
-    if (this.value >= 75) return 'green';
-    if (this.value >= 40) return 'orange';
+  getPopularityColor(value: number): string {
+    if (value >= 75) return 'green';
+    if (value >= 40) return 'orange';
     return 'red';
   }
 }
