@@ -2,24 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
-    selector: 'app-about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css'],
-    standalone: false
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css'],
+  standalone: false
 })
 export class AboutComponent implements OnInit {
-  name:string = null;
-  profile_pic:string = "assets/unknown.jpg";
-  profile_link:string = null;
+  name: string = null;
+  profile_pic: string = 'assets/unknown.jpg';
+  profile_link: string = null;
 
+  // ✅ Inject the Spotify service
+  constructor(private spotify: SpotifyService) {}
 
-  //TODO: inject the Spotify service
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  // ✅ Called when the button is clicked
+  loadUserInfo() {
+    this.spotify.getMe().subscribe((me: any) => {
+      this.name = me.display_name;
+      this.profile_pic = me.images?.length ? me.images[0].url : 'assets/unknown.jpg';
+      this.profile_link = me.external_urls?.spotify;
+    });
   }
-
-   /*TODO: create a function which gets the "about me" information from Spotify when the button in the view is clicked.
-  In that function, update the name, profile_pic, and profile_link fields */
-
 }
+
