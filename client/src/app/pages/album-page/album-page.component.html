@@ -11,7 +11,7 @@
       <app-thermometer [popularity]="album.popularity"></app-thermometer>
 
       <!-- ✅ Loop over album artists -->
-      @for (artist of album.artists) {
+      @for (artist of album.artists; track artist.id) {
         <p>
           Artist:
           <a [routerLink]="['/artist', artist.id]">
