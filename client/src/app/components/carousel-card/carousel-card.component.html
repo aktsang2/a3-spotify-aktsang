@@ -1,10 +1,10 @@
 <!-- Bind the href to the local route (e.g., /album/:id, /artist/:id, /track/:id) -->
-<a [routerLink]="['/album', album.id]">
+<a [routerLink]="['/album', resource.id]">
   <!-- Bind the image source -->
-  <img class="d-block w-100" [src]="album.imageURL" [alt]="album.name">
+  <img class="d-block w-100" [src]="resource.imageURL" [alt]="resource.name">
   
   <div class="carousel-caption d-none d-md-block">
     <!-- Populate with the album/artist/song name -->
-    <h5>{{ album.name }}</h5>
+    <h5>{{ resource.name }}</h5>
   </div>
 </a>
