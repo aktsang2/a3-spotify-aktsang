@@ -20,8 +20,8 @@ export class TrackPageComponent implements OnInit {
     this.trackId = this.route.snapshot.paramMap.get('id');
 
     // ✅ Fetch track details
-    this.spotifyService.getTrack(this.trackId).subscribe((data: any) => {
-      this.track = new TrackData(data);
+    this.spotifyService.getTrack(this.trackId).then((data) => {
+      this.track = data;
     });
   }
 }
