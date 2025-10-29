@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (track of tracks; let i = $index) {
+      @for (track of tracks; track track.id; let i = $index) {
         <tr>
           <!-- Row index (start with 1) -->
           <td>{{ i + 1 }}</td>
@@ -26,7 +26,7 @@
             </a>
           </td>
 
-          <!-- Duration (assuming ms, convert to mm:ss in component) -->
+          <!-- Duration -->
           <td>{{ formatDuration(track.duration_ms) }}</td>
 
           <!-- Primary Artist -->
@@ -51,3 +51,4 @@
     </tbody>
   </table>
 }
+
