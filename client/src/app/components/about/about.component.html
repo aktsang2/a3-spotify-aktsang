@@ -2,14 +2,14 @@
 <button class="btn btn-light" (click)="loadUserInfo()">Load info about me</button>
 
 <!-- Bind to the user's name -->
-<h3>Logged in user: {{ user?.name }}</h3>
+<h3>Logged in user: {{ name }}</h3>
 
 <!-- Bind the profile picture dynamically -->
-<img [src]="user?.profile_pic" class="profile" alt="Profile picture">
+<img [src]="profile_pic" alt="Profile picture">
 
 <p>
   <!-- Bind the profile link -->
-  <a class="btn btn-light" [href]="user?.profile_link" target="_blank">
+<a [href]="profile_link" target="_blank">Open Spotify Profile</a>
     Open profile on Spotify
   </a>  
 </p>
