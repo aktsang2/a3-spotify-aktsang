@@ -22,14 +22,11 @@ export class AlbumPageComponent implements OnInit {
   ngOnInit() {
     this.albumId = this.route.snapshot.paramMap.get('id');
 
-    // ✅ Fetch album details
-    this.spotifyService.getAlbum(this.albumId).subscribe((data: any) => {
-      this.album = new AlbumData(data);
+    this.spotifyService.getAlbum(this.albumId).then((data) => {
+      this.album = data;
     });
-
-    // ✅ Fetch album tracks
-    this.spotifyService.getAlbumTracks(this.albumId).subscribe((data: any) => {
-      this.tracks = data.items.map((t: any) => new TrackData(t));
+    this.spotifyService.getTracksForAlbum(this.albumId).then((tracks) => {
+      this.tracks = tracks;
     });
   }
 }
