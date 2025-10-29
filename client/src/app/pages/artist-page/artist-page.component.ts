@@ -23,19 +23,14 @@ export class ArtistPageComponent implements OnInit {
   ngOnInit() {
     this.artistId = this.route.snapshot.paramMap.get('id');
 
-    // ✅ Get artist details
-    this.spotifyService.getArtist(this.artistId).subscribe((data: any) => {
-      this.artist = new ArtistData(data);
+    this.spotifyService.getArtist(this.artistId).then((data) => {
+      this.artist = data;
     });
-
-    // ✅ Get artist top tracks (Spotify requires a market parameter, e.g. 'US')
-    this.spotifyService.getTopTracksForArtist(this.artistId, 'US').subscribe((data: any) => {
-      this.topTracks = data.tracks.map((t: any) => new TrackData(t));
+    this.spotifyService.getTopTracksForArtist(this.artistId).then((tracks) => {
+      this.topTracks = tracks;
     });
-
-    // ✅ Get artist albums
-    this.spotifyService.getAlbumsForArtist(this.artistId).subscribe((data: any) => {
-      this.albums = data.items.map((a: any) => new AlbumData(a));
-    });
+    this.spotifyService.getAlbumsForArtist(this.artistId).then((albums) => {
+      this.albums = albums;
+    })
   }
 }
